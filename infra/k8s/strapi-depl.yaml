@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: strapi-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: strapi
+  template:
+    metadata:
+      labels:
+        app: strapi
+    spec:
+      volumes:
+        - name: strapi-persistent-storage
+          persistentVolumeClaim:
+            claimName: shared-pvc
+      containers:
+        - name: strapi
+          image: registry.gitlab.com/ism_portfolio/backend
+          ports:
+            - containerPort: 1337
+              name: http
+          envFrom:
+            - configMapRef:
+                name: strapi-conf
+            - secretRef:
+                name: credentials-strapi
+          env:
+            - name: REVALIDATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: credentials-service
+                  key: REVALIDATION_TOKEN
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: credentials-service
+                  key: DATABASE_PASSWORD
+          volumeMounts:
+            - name: strapi-persistent-storage
+              mountPath: /opt/app/public/uploads
+      imagePullSecrets:
+        - name: credentials-registry
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: strapi-srv
+spec:
+  selector:
+    app: strapi
+  ports:
+    - name: http
+      protocol: TCP
+      port: 1337
+      targetPort: http

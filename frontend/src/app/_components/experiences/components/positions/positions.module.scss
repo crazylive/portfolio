@@ -1,0 +1,15 @@
+@import 'src/styles';
+
+.position {
+  display: flex;
+  align-items: center;
+  color: rgba($color-text-main, 0.6);
+  font-size: 14px;
+  line-height: 18px;
+
+  &:first-child {
+    color: $color-text-main;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

@@ -1,0 +1,18 @@
+@use 'sass:map';
+
+// screen
+// See on @constants/breakpoint
+$grid-breakpoints: (
+  xxs: 425px,
+  xs: 768px,
+  sm: 1024px,
+  md: 1280px,
+  lg: 1440px,
+  xl: 1920px,
+  xxl: 2560px
+) !default;
+
+// container max width
+$container-tablet: map.get($grid-breakpoints, xs) - 40px;
+$container-desktop: map.get($grid-breakpoints, md) - 80px;
+$container-large: map.get($grid-breakpoints, lg) - 120px;

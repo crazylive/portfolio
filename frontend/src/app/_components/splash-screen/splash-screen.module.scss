@@ -1,0 +1,11 @@
+@import 'src/styles';
+
+.splashScreen {
+  position: relative;
+  height: 125vh;
+  overflow: hidden;
+
+  @include media-breakpoint-up(xs) {
+    height: 150vh;
+  }
+}

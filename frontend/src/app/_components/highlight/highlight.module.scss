@@ -1,0 +1,13 @@
+@import 'src/styles';
+
+.highlight {
+  position: relative;
+}
+
+.cursor {
+  position: absolute;
+  background: radial-gradient(600px at 50% 0, rgb(255 219 212 / 30%), transparent 80%);
+  transition: background cubic-bezier(.4,0,.2,1) 0.3s;
+  pointer-events: none;
+  inset: 0;
+}

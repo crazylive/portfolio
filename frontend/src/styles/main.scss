@@ -1,0 +1,159 @@
+@import '~reset-css/sass/reset';
+@import 'src/styles';
+
+:root {
+  --padding-section-top: 60px;
+  --padding-section-bottom: 60px;
+  --padding-section-right: 40px;
+  --padding-section-left: 40px;
+
+  @include media-breakpoint-up(xxs) {
+    --padding-section-top: 100px;
+    --padding-section-bottom: 100px;
+    --padding-section-right: 10vw;
+    --padding-section-left: 10vw;
+  }
+
+  @include media-breakpoint-up(xs) {
+    --padding-section-top: 10vh;
+    --padding-section-bottom: 10vh;
+    --padding-section-right: 20vw;
+    --padding-section-left: 20vw;
+  }
+
+  @include media-breakpoint-up(sm) {
+    --padding-section-top: 10vh;
+    --padding-section-bottom: 10vh;
+    --padding-section-right: 15vw;
+    --padding-section-left: 15vw;
+  }
+
+  @include media-breakpoint-up(md) {
+    --padding-section-top: 20vh;
+    --padding-section-bottom: 20vh;
+    --padding-section-right: 165px;
+    --padding-section-left: 20%;
+  }
+
+  @include media-breakpoint-up(lg) {
+    --padding-section-left: 22%;
+  }
+
+  @include media-breakpoint-up(xl) {
+    --padding-section-right: 15%;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @extend %text-4;
+  color: $color-text-main;
+  background-color: $color-background-main;
+}
+
+.padding {
+  padding: var(--padding-section-top) var(--padding-section-right) var(--padding-section-bottom) var(--padding-section-left);
+}
+
+.content {
+  --space-unit: 0.6em;
+  --space-large: calc(var(--space-unit) * 1.5);
+  font-family: $font-family-lato;
+
+  blockquote,
+  ol,
+  p,
+  ul {
+    margin-bottom: var(--space-large);
+    padding-top: .2em;
+    font-size: 1em;
+    line-height: 1.6em
+  }
+
+  a {
+    color: rgba($color-cerulean-blue, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: rgba($color-cerulean-blue, 1);
+    }
+  }
+
+  sup {
+    font-size: 0.6em;
+    vertical-align: super;
+  }
+
+  ul,
+  ol {
+    margin-left: 2rem;
+    list-style: initial;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  @extend %list;
+}
+
+svg {
+  display: block;
+}
+
+.image-responsive {
+  width: 100%;
+  height: auto;
+}
+
+h1, .header-1 {
+  @extend %header-1;
+}
+
+h2, .header-2 {
+  @extend %header-2;
+}
+
+h3, .header-3 {
+  @extend %header-3;
+}
+
+h4, .header-4 {
+  @extend %header-4;
+}
+
+h5, .header-5 {
+  @extend %header-5;
+}
+
+.textButton {
+  @extend %text-button;
+}
+
+.text-1 {
+  @extend %text-1;
+}
+
+.text-2 {
+  @extend %text-2;
+}
+
+.text-3 {
+  @extend %text-3;
+}
+
+.text-4 {
+  @extend %text-4;
+}
+
+.text-5 {
+  @extend %text-5;
+}
+
+.textForm {
+  @extend %text-form;
+}

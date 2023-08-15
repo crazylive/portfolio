@@ -1,0 +1,57 @@
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH != "master" && $CI_PIPELINE_SOURCE != "merge_request_event"
+      when: never
+    - when: always
+
+variables:
+  IMAGE_NAME: $CI_REGISTRY_IMAGE
+
+build_image:
+  stage: build
+  tags:
+    - shell
+    - docker
+  before_script:
+    - export PACKAGE_JSON_VERSION=$(cat package.json | jq -r .version)
+    - export VERSION=$PACKAGE_JSON_VERSION-$CI_PIPELINE_IID
+    - echo "VERSION=$VERSION" >> build.env
+  script:
+    - docker build --build-arg STRAPI_API_PROTOCOL --build-arg STRAPI_API_HOST --build-arg STRAPI_API_SUFFIX -t $IMAGE_NAME:$VERSION .
+  artifacts:
+    reports:
+      dotenv: build.env
+
+push_image:
+  stage: build
+  needs:
+    - build_image
+  tags:
+    - shell
+    - docker
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker push $IMAGE_NAME:$VERSION
+
+deploy:
+  stage: deploy
+  tags:
+    - shell
+    - docker
+  dependencies:
+    - build_image
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -p $KUBER_SSH_PORT $KUBER_SSH_HOST >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - ssh $KUBER_SSH_USER@$KUBER_SSH_HOST -p $KUBER_SSH_PORT "
+      sudo -i k3s kubectl set image deployment/nextjs-depl nextjs=$IMAGE_NAME:$VERSION"
+  environment:
+    name: frontend
+    url: $FRONT_ENDPOINT

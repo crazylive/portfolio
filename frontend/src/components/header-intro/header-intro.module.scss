@@ -1,0 +1,11 @@
+@import 'src/styles';
+
+.headerIntro {
+  font-weight: 900;
+
+  i {
+    font-weight: 300;
+    font-family: $font-family-libre-baskerville;
+    font-style: italic;
+  }
+}

@@ -1,0 +1,54 @@
+@import 'src/styles';
+
+.experiences {
+  --card-height: 100vh;
+  position: relative;
+}
+
+.navigation {
+  display: none;
+
+  @include media-breakpoint-up(sm) {
+    display: block;
+  }
+}
+
+.title {
+  color: $color-text-main;
+
+  i {
+    color: $color-text-accent;
+  }
+}
+
+.body {
+  @include media-breakpoint-up(sm) {
+    margin-top: 60px;
+  }
+}
+
+.cards {
+  position: relative;
+  display: block;
+
+  @include media-breakpoint-up(sm) {
+    // 100 / --card-height = 1
+    transform: translateY(calc(var(--card-height) * -1));
+  }
+}
+
+.cardWrapper {
+  &:not(:first-child) {
+    margin-top: 60px;
+  }
+
+  @include media-breakpoint-up(sm) {
+    height: var(--card-height);
+  }
+}
+
+.card {
+  @include media-breakpoint-up(sm) {
+    display: none;
+  }
+}

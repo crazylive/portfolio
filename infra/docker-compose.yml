@@ -1,0 +1,18 @@
+services:
+  postgres:
+    build:
+      context: postgres
+      dockerfile: Dockerfile
+    container_name: portfolio-postgres
+    restart: "unless-stopped"
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    env_file: .env
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "localhost", "-U", "$POSTGRES_USER", "-d", "$POSTGRES_DB"]
+      retries: 20
+      interval: 3s
+      start_period: 5s
+    shm_size: '256m'
+    ports:
+      - "5432:5432"

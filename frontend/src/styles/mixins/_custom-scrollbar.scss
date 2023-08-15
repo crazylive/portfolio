@@ -1,0 +1,47 @@
+@import '../variables';
+
+@mixin custom-scrollbar(
+  $size: 5px,
+  $foreground-color: $color-scrollbar-foreground,
+  $background-color: $color-scrollbar-background,
+  $padding: $size,
+  $visible-on-hover: true
+) {
+  padding-right: $padding;
+
+  // Standard version (Firefox only for now)
+  scrollbar-color: $foreground-color $background-color;
+
+  // For Chrome & Safari
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    border-radius: $size / 2;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+    border-radius: $size / 2;
+  }
+
+  @if $visible-on-hover {
+    &::-webkit-scrollbar,
+    &::-webkit-scrollbar-thumb,
+    &::-webkit-scrollbar-track {
+      display: none;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar,
+      &::-webkit-scrollbar-thumb,
+      &::-webkit-scrollbar-track {
+        display: block;
+      }
+    }
+  }
+}

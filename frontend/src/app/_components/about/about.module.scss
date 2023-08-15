@@ -1,0 +1,71 @@
+@import 'src/styles';
+
+.about {
+  position: relative;
+}
+
+.header {
+  color: $color-text-accent;
+}
+
+.intro {
+  padding-top: 40px;
+
+  @include media-breakpoint-up(xs) {
+    padding-top: 60px;
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-top: 100px;
+  }
+}
+
+.photo {
+  @include media-breakpoint-up(xxs) {
+    width: 45%;
+  }
+
+  @include media-breakpoint-up(xs) {
+    position: absolute;
+    top: 30vh;
+    right: 60px;
+    width: 22%;
+    margin: 0;
+  }
+
+  @include media-breakpoint-up(sm) {
+    right: var(--padding-section-right);
+    width: 23%;
+  }
+
+  @include media-breakpoint-down(xs) {
+    transform: none !important;
+  }
+}
+
+.content {
+  @include media-breakpoint-up(xxs) {
+    max-width: 70%;
+  }
+
+  @include media-breakpoint-up(sm) {
+    max-width: 50%;
+  }
+}
+
+.description {
+  margin-top: 30px;
+  font-family: $font-family-lato;
+
+  p:not(:first-child) {
+    margin-top: 30px;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-top: 50px;
+
+    p:not(:first-child) {
+      margin-top: 40px;
+    }
+  }
+}

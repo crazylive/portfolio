@@ -1,0 +1,39 @@
+@import '../../variables';
+
+/**
+  Добавление троеточия в конце текста
+  $row-amount - количество отображаемых строк
+  $line-height - высота строки текста (для правильного расчёта высоты)
+  $background-color - фон для ...
+*/
+@mixin line-clamp(
+  $row-amount,
+  $line-height,
+  $background-color: $color-background-main
+) {
+  position: relative;
+  max-height: $line-height * $row-amount;
+  overflow: hidden;
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding-left: 2px;
+    font-size: 18px;
+    line-height: 20px;
+    background: $background-color;
+    content: '...';
+  }
+
+  @supports (display: -webkit-box) and (-webkit-line-clamp: 2) {
+    display: -webkit-box; /* stylelint-disable-line value-no-vendor-prefix */
+    -webkit-line-clamp: $row-amount;
+    -webkit-box-orient: vertical;
+    max-height: none;
+
+    &::after {
+      display: none;
+    }
+  }
+}

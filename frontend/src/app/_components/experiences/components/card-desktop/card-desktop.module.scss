@@ -1,0 +1,87 @@
+@import 'src/styles';
+
+.experienceCardDesktop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 82.5px;
+
+  @include media-breakpoint-up(lg) {
+    padding: 15vh 25vh;
+  }
+}
+
+.odd {
+  color: $color-text-invert;
+  background-color: $color-baltic-sea;
+
+  .dot {
+    color: $color-muesli;
+  }
+}
+
+.even {
+  color: $color-text-main;
+  background-color: $color-background-secondary;
+
+  .position {
+    color: rgba($color-text-main, 0.6);
+
+    &:first-child {
+      color: $color-text-main;
+    }
+  }
+
+  .dot {
+    color: $color-text-accent;
+  }
+
+  .tag {
+    color: $color-text-invert;
+    background-color: $color-mirage;
+  }
+
+}
+
+.wave {
+  width: auto;
+  height: 8px;
+
+  @include media-breakpoint-up(md) {
+    height: 12px;
+  }
+}
+
+.positions {
+  margin-top: 20px;
+}
+
+.position {
+  color: rgba($color-text-invert, 0.6);
+  font-size: 16px;
+  line-height: 20px;
+
+  &:first-child {
+    color: $color-text-invert;
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
+
+
+.content {
+  margin-top: 15px;
+
+  @include media-breakpoint-up(sm) {
+    max-width: 70%;
+  }
+}
+
+.tags {
+  @include media-breakpoint-up(sm) {
+    max-width: 70%;
+  }
+}
+
+

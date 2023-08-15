@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_home_page_certifications",
+  "info": {
+    "displayName": "Certificates",
+    "icon": "cloud",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "certificate": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "issued": {
+      "type": "date",
+      "required": false
+    },
+    "title": {
+      "type": "string"
+    },
+    "isDisabled": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

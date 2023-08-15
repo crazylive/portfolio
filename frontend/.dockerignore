@@ -1,0 +1,14 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+yarn-error.log
+README.md
+.next
+.dist
+.cahce
+.git
+.idea
+next-env.d.ts
+tsconfig.tsbuildinfo
+.env

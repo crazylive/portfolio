@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_home_page_links",
+  "info": {
+    "displayName": "links"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "whatsapp",
+        "telegram",
+        "github",
+        "linkedin"
+      ],
+      "required": true
+    }
+  }
+}

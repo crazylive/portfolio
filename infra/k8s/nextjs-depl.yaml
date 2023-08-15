@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextjs
+  template:
+    metadata:
+      labels:
+        app: nextjs
+    spec:
+      volumes:
+        - name: nextjs-persistent-storage
+          persistentVolumeClaim:
+            claimName: shared-pvc
+      containers:
+        - name: nextjs
+          image: registry.gitlab.com/ism_portfolio/frontend
+          ports:
+            - containerPort: 3000
+              name: nextjs
+          envFrom:
+            - configMapRef:
+                name: nextjs-conf
+          env:
+            - name: REVALIDATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: credentials-service
+                  key: REVALIDATION_TOKEN
+          volumeMounts:
+            - name: nextjs-persistent-storage
+              mountPath: /app/public/uploads
+      imagePullSecrets:
+        - name: credentials-registry
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextjs-srv
+spec:
+  selector:
+    app: nextjs
+  ports:
+    - name: nextjs
+      protocol: TCP
+      port: 3000
+      targetPort: nextjs

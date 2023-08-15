@@ -1,0 +1,64 @@
+@import 'src/styles';
+
+.certification {
+  display: block;
+}
+
+.header {
+  padding-top: var(--padding-section-top);
+  padding-right: var(--padding-section-right);
+  padding-left: var(--padding-section-left);
+}
+
+.title {
+  color: $color-text-accent;
+
+  i {
+    color: $color-text-main;
+  }
+}
+
+.certificatesWrapper {
+  overflow: hidden;
+}
+
+.certificates {
+  @include media-breakpoint-up(sm) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.certificate {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 -5px 10px -4px rgb(0 0 0 / 20%);
+  transition: margin 0.2s ease-out;
+
+  &:not(:first-child) {
+    margin-top: -50%;
+  }
+
+  @include media-breakpoint-up(sm) {
+    margin-top: 0;
+    overflow: visible;
+    border: 0 none;
+    box-shadow: none;
+    transition: none;
+
+    &:not(:first-child) {
+      margin-top: 0;
+    }
+  }
+}
+
+.certificate.isOpen {
+  &:not(&:first-child) {
+    margin-top: 20px;
+
+    @include media-breakpoint-up(sm) {
+      margin-top: 0;
+    }
+  }
+}

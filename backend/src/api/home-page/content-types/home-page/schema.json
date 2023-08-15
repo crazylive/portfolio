@@ -1,0 +1,74 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_pages",
+  "info": {
+    "singularName": "home-page",
+    "pluralName": "home-pages",
+    "displayName": "Home page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "welcome_title": {
+      "type": "string",
+      "required": true
+    },
+    "welcome_messages": {
+      "type": "dynamiczone",
+      "components": [
+        "dynamic.text"
+      ],
+      "required": true
+    },
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "about_title": {
+      "type": "string",
+      "required": true
+    },
+    "about_content": {
+      "type": "customField",
+      "options": {
+        "preset": "toolbar"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor5.CKEditor"
+    },
+    "about_photo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "social_media": {
+      "type": "dynamiczone",
+      "components": [
+        "home-page.links"
+      ]
+    },
+    "experience": {
+      "type": "dynamiczone",
+      "components": [
+        "home-page.experience"
+      ],
+      "required": true
+    },
+    "certificates": {
+      "type": "dynamiczone",
+      "components": [
+        "home-page.certifications"
+      ]
+    }
+  }
+}

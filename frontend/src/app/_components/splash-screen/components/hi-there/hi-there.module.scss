@@ -1,0 +1,53 @@
+@import 'src/styles';
+
+.hiThere {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  @include media-breakpoint-down(xxs) {
+    transform: none !important;
+  }
+}
+
+.word {
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: 20px;
+
+  &:first-child {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-top: -2.95em;
+    transform: translateX(0.82em);
+  }
+
+  &:last-child {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-top: 0.27em;
+    transform: translateX(50%);
+  }
+
+  @include media-breakpoint-up(xxs) {
+    font-size: 26px;
+  }
+
+  @include media-breakpoint-up(xs) {
+    font-size: 36px;
+  }
+
+  @include media-breakpoint-up(sm) {
+    font-size: 42px;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 56px;
+  }
+}

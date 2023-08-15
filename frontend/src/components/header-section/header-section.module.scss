@@ -1,0 +1,36 @@
+@import 'src/styles';
+
+.headerSection {
+  font-weight: 700;
+  font-size: 60px;
+  font-family: $font-family-gilroy;
+  line-height: 0.85;
+  text-transform: uppercase;
+
+  @include media-breakpoint-up(xs) {
+    font-size: 80px;
+  }
+
+  @include media-breakpoint-up(md) {
+    font-size: 100px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: 130px;
+  }
+
+  span {
+    display: block;
+    margin-top: 30px;
+  }
+}
+
+.wave {
+  width: 50px;
+  height: 10px;
+
+  @include media-breakpoint-up(md) {
+    width: 70px;
+    height: 15px;
+  }
+}

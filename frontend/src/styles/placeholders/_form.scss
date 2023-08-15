@@ -1,0 +1,41 @@
+@import './typography';
+
+%form-field {
+  @extend %text-form;
+  height: 50px;
+  min-height: 50px;
+  padding: 16px 10px 15px;
+  color: $color-text-main;
+  line-height: 1.2;
+  border: 1px solid rgba($color-text-main, 10%);
+  border-radius: 8px;
+  outline: 0 none;
+  appearance: none;
+
+  @include media-breakpoint-up(md) {
+    padding: 15px 10px 17px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 16px 10px 15px;
+  }
+
+  &:hover,
+  &:focus {
+    border: 1px solid rgba($color-text-main, 20%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+
+  &.error {
+    border-color: $color-error;
+  }
+}
+
+%field-label {
+  @extend %text-5;
+  margin-bottom: 10px;
+  color: $color-santas-gray;
+}

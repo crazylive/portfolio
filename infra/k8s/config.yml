@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: strapi-conf
+data:
+  HOST: "0.0.0.0"
+  PORT: "1337"
+  NODE_ENV: "production"
+
+  # database
+  DATABASE_CLIENT: "postgres"
+  DATABASE_HOST: "127.0.0.1"
+  DATABASE_PORT: "5432"
+  DATABASE_NAME: "database"
+  DATABASE_USERNAME: "user"
+  DATABASE_SSL: "false"
+
+  # nextjs
+  NEXTJS_HOST: "nextjs-srv"
+  NEXTJS_PORT: "3000"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nextjs-conf
+data:
+  HOSTNAME: "0.0.0.0"
+  PORT: "3000"
+  STRAPI_API_PROTOCOL: "http"
+  STRAPI_API_PORT: "1337"
+  STRAPI_API_HOST: "127.0.0.1"
+  STRAPI_API_SUFFIX: "/api"
